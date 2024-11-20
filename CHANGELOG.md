@@ -1,5 +1,11 @@
 # tsprism
 
+## 1.0.0
+
+### Major Changes
+
+- 41c7125: rc for test utilities
+
 ## 0.2.0
 
 ### Minor Changes

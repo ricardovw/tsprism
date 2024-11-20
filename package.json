@@ -1,6 +1,6 @@
 {
   "name": "tsprism",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "a toolkit with type helpers and testing utilities for Typescript heavy projects",
   "type": "module",
   "main": "./dist/index.d.ts",
