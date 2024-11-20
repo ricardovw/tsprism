@@ -1,6 +1,6 @@
 {
   "name": "tsprism",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "a toolkit with type helpers and testing utilities for Typescript heavy projects",
   "type": "module",
   "main": "lib/index.cjs",
@@ -14,7 +14,9 @@
       "types": "./lib/types/index.d.ts"
     }
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "directories": {
     "lib": "lib"
   },
