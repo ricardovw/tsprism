@@ -1,20 +1,13 @@
 import typescript from 'rollup-plugin-typescript2'
 import del from 'rollup-plugin-delete'
+import dts from 'rollup-plugin-dts';
 
 export default {
   input: 'src/index.ts',
-  output: [
-    {
-      file: 'lib/index.cjs',
-      format: 'cjs'
-    },
-    {
-      file: 'lib/index.esm.js',
-      format: 'esm'
-    },
-  ],
+  output: [ { file: 'dist/index.d.ts' } ],
   plugins: [
-    del({ target: ["lib/*"] }),
-    typescript({ useTsconfigDeclarationDir: true })
+    del({ targets: ["dist/*"] }),
+    typescript({ useTsconfigDeclarationDir: true }),
+    dts(),
   ] 
 }
