@@ -3,21 +3,11 @@
   "version": "0.0.0",
   "description": "a toolkit with type helpers and testing utilities for Typescript heavy projects",
   "type": "module",
-  "main": "lib/index.cjs",
-  "exports": {
-    "import": {
-      "default": "./lib/index.esm.js",
-      "types": "./lib/types/index.d.ts"
-    },
-    "require": {
-      "default": "./lib/index.cjs",
-      "types": "./lib/types/index.d.ts"
-    }
-  },
-  "files": ["lib"],
-  "directories": {
-    "lib": "lib"
-  },
+  "main": "./dist/index.d.ts",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist/index.d.ts"
+  ],
   "scripts": {
     "dr": "npm publish --dry-run",
     "pack": "rollup -c",
@@ -26,15 +16,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ricardovw/tsprism"
+    "url": "git+https://github.com/ricardovw/tsprism.git"
   },
   "author": "ricardovw",
   "license": "MIT",
   "devDependencies": {
+    "@changesets/cli": "^2.27.7",
     "rollup": "^4.27.3",
     "rollup-plugin-delete": "^2.1.0",
+    "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-typescript2": "^0.36.0",
-    "typescript": "^5.6.3",
-    "@changesets/cli": "^2.27.7"
+    "typescript": "^5.6.3"
   }
 }
