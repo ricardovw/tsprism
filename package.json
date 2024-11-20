@@ -1,0 +1,38 @@
+{
+  "name": "tsprism",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
+  "main": "lib/index.cjs",
+  "exports": {
+    "import": {
+      "default": "./lib/index.esm.js",
+      "types": "./lib/types/index.d.ts"
+    },
+    "require": {
+      "default": "./lib/index.cjs",
+      "types": "./lib/types/index.d.ts"
+    }
+  },
+  "files": ["lib"],
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dr": "npm publish --dry-run",
+    "pack": "rollup -c",
+    "push": "npm run pack && npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ricardovw/tsprism"
+  },
+  "author": "ricardovw",
+  "license": "MIT",
+  "devDependencies": {
+    "rollup": "^4.27.3",
+    "rollup-plugin-delete": "^2.1.0",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.6.3"
+  }
+}
