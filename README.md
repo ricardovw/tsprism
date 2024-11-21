@@ -67,9 +67,9 @@ For example:
 import { Expect, TypeOf, TS, ToBe } from 'tsprism'
 
 const myObj = { ts: 'test', prism: 'utilities' }
-type Obj = keyof typeof myObj
+type Obj = typeof myObj
 
-🟢 type testObj1 = Expect<TypeOf<Obj, ToBe, 'ts' | 'prism'>>
+🟢 type testObj1 = Expect<TypeOf<Obj, ToBe, { ts: string, prism: string }>>
 
-🟢 type testObj2 = Expect<TS<typeof myObj, ToBe, 'ts' | 'prism'>>
+🟢 type testObj2 = Expect<TS<typeof myObj, ToBe, { ts: string, prism: string }>>
 ```
