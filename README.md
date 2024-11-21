@@ -59,7 +59,7 @@ type Obj = typeof myObj
 > Both failing test cases would pass with the ***ToBe*** comparison operator.
 
 ## TS
-This type is a semantic alias for the `TypeOf` type used within the `Expect` type. They can be used interchangeably to improve readability of the type test. 
+This type is a semantic alias for `TypeOf`. They can be used interchangeably. It's purpose is to improve readability when the `typeof` keyword needs to be used before a runtime value in the test case. 
 
 For example:
 
