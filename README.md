@@ -42,7 +42,7 @@ import { Expect, TypeOf, ToBe, ToNotBe, ToEqual } from 'tsprism'
 
 type TEST = Expect<TypeOf<Input, Comparison, Expected>>
 ```
-We can simplify this required type assignment (testObj) by nesting multiple tests into a single test object type like so: 
+We can simplify this required type assignment (type TEST) by nesting multiple tests into a single test object type like so: 
 
 ```TS
 type TEST = {
