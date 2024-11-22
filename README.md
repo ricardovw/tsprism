@@ -4,7 +4,7 @@ A prism of type helpers and testing utilities for Typescript!
 `npm i -D tsprism`
 
 # Testing Utilities
-`tsprism` includes a set of utilities to help you test and document the expected output of generic, mapped or advanced types.
+`tsprism` includes a set of utilities to help you test and document the expected output of generic, mapped or dynamic types.
 
 ## Import
 ```TS
@@ -12,7 +12,7 @@ import { Expect, TypeOf, ToBe, ToNotBe, ToEqual, TS } from 'tsprism'
 ```
 
 ## Expect
-The main assertion wrapper for our type test cases. It needs to be assigned to a type and takes in a type which returns a boolean as argument `T`.  
+The main assertion wrapper for our type test cases. It needs to be assigned to a type for the TS compiler. It takes in a type which returns a boolean as argument `T`.  
 
 ```TS
 import { Expect } from 'tsprism'
@@ -35,12 +35,16 @@ Our main assertion type to make the comparison of our test cases. It takes three
 import { Expect, TypeOf, ToBe, ToNotBe, ToEqual } from 'tsprism'
 
 type testObj = Expect<TypeOf<Input, Comparison, Expected>>
+```
+We can simplify this type assignment (testObj) by nesting multiple tests into a single test object type like so: 
 
-// for example
-🟢 type testObjToBe = Expect<TypeOf<true, ToBe, boolean>>
-🔴 type testObjToNotBe = Expect<TypeOf<true, ToNotBe, boolean>>
-🔴 type testObjToEqualFail = Expect<TypeOf<true, ToEqual, boolean>>
-🟢 type testObjToEqual = Expect<TypeOf<true, ToEqual, true>>
+```TS
+type TEST = {
+  🟢 toBe: Expect<TypeOf<true, ToBe, boolean>>
+  🔴 toNotBe: Expect<TypeOf<true, ToNotBe, boolean>>
+  🔴 ToEqualFail: Expect<TypeOf<true, ToEqual, boolean>>
+  🟢 ToEqual: Expect<TypeOf<true, ToEqual, true>>
+}
 ```
 
 ### TS
@@ -106,4 +110,4 @@ type Obj = typeof myObj
 ```
 > Both failing test cases would pass with the ***ToBe*** comparison operator.
 
-## Enjoy
+## Enjoy 🧪🚀
