@@ -8,8 +8,14 @@ A prism of type helpers and testing utilities for Typescript!
 
 ## Import
 ```TS
-import { Expect, TypeOf, ToBe, ToNotBe, ToEqual, TS } from 'tsprism'
+import { Expect, TypeOf, TS, ToBe, ToNotBe, ToEqual } from 'tsprism'
 ```
+- [Expect](#Expect)
+- [TypeOf](#TypeOf)
+- [TS](#TS)
+- [ToBe](#ToBe)
+- [ToNotBe](#ToNotBe)
+- [ToEqual](#ToEqual)
 
 ## Expect
 The main assertion wrapper for our type test cases. It needs to be assigned to a type for the TS compiler. It takes in a type which returns a boolean as argument `T`.  
@@ -34,9 +40,9 @@ Our main assertion type to make the comparison of our test cases. It takes three
 ```TS
 import { Expect, TypeOf, ToBe, ToNotBe, ToEqual } from 'tsprism'
 
-type testObj = Expect<TypeOf<Input, Comparison, Expected>>
+type TEST = Expect<TypeOf<Input, Comparison, Expected>>
 ```
-We can simplify this type assignment (testObj) by nesting multiple tests into a single test object type like so: 
+We can simplify this required type assignment (testObj) by nesting multiple tests into a single test object type like so: 
 
 ```TS
 type TEST = {
@@ -46,6 +52,7 @@ type TEST = {
   🟢 ToEqual: Expect<TypeOf<true, ToEqual, true>>
 }
 ```
+> This helps prevents pollution of the namepsace by test case types. 
 
 ### TS
 This type is a semantic alias for `TypeOf`. They can be used interchangeably. It's purpose is to improve readability when the `typeof` keyword needs to be used before a runtime value in the test case. 
@@ -58,9 +65,10 @@ import { Expect, TypeOf, TS, ToBe } from 'tsprism'
 const myObj = { ts: 'test', prism: 'utilities' }
 type Obj = typeof myObj
 
-🟢 type testObj1 = Expect<TypeOf<Obj, ToBe, { ts: string, prism: string }>>
-
-🟢 type testObj2 = Expect<TS<typeof myObj, ToBe, { ts: string, prism: string }>>
+type TEST = {
+  🟢 typeOf: Expect<TypeOf<Obj, ToBe, { ts: string, prism: string }>>
+  🟢 ts: Expect<TS<typeof myObj, ToBe, { ts: string, prism: string }>> 
+}
 ```
 ## Comparison operators
 
@@ -72,10 +80,11 @@ import { Expect, TypeOf, ToBe } from 'tsprism'
 const myObj = { ts: 'test', prism: 'utilities' }
 type Obj = keyof typeof myObj
 
-🟢 type testObj1 = Expect<TypeOf<Obj, ToBe, 'ts' | 'prism'>>
-
-🔴 type testObj2 = Expect<TypeOf<Obj>, ToBe, typeof myObj>
-//                        ˄˄ 🚁 Type 'false' does not satisfy the constraint 'true'.ts(2344)
+type TEST = {
+  🟢 pass: Expect<TypeOf<Obj, ToBe, 'ts' | 'prism'>>
+  🔴 fail: Expect<TypeOf<Obj>, ToBe, typeof myObj>
+//                ˄˄ 🚁 Type 'false' does not satisfy the constraint 'true'.ts(2344)
+}
 ```
 
 ### ToNotBe
@@ -86,10 +95,11 @@ import { Expect, TypeOf, ToNotBe } from 'tsprism'
 const myObj = { ts: 'test', prism: 'utilities' }
 type Obj = keyof typeof myObj
 
-🟢 type testObj1 = Expect<TypeOf<Obj, ToNotBe, typeof myObj>>
-
-🔴 type testObj2 = Expect<TypeOf<Obj, ToNotBe, 'ts' | 'prism'>>
-//                        ˄˄ 🚁 Type 'false' does not satisfy the constraint 'true'.ts(2344)
+type TEST = {
+  🟢 pass: Expect<TypeOf<Obj, ToNotBe, typeof myObj>>
+  🔴 fail: Expect<TypeOf<Obj, ToNotBe, 'ts' | 'prism'>>
+//                ˄˄ 🚁 Type 'false' does not satisfy the constraint 'true'.ts(2344)
+}
 ```
 
 ### ToEqual
@@ -100,13 +110,13 @@ import { Expect, TypeOf, ToBe, ToEqual } from 'tsprism'
 const myObj = { ts: 'test', prism: 'utilities' } as const
 type Obj = typeof myObj
 
-
-🟢 type testObj = Expect<TypeOf<Obj, ToEqual, Readonly<{ ts: 'test', prism: 'utilities' }>>>
-
-🔴 type testObj2 = Expect<TypeOf<Obj, ToEqual, Readonly<{ ts: string, prism: string }>>>
-//                        ˄˄ 🚁 Type 'false' does not satisfy the constraint 'true'.ts(2344)
-🔴 type testObj3 = Expect<TypeOf<Obj, ToEqual, { ts: 'test', prism: 'utilities' }>>
-//                        ˄˄ 🚁 Type 'false' does not satisfy the constraint 'true'.ts(2344)
+type TEST = {
+  🟢 pass:Expect<TypeOf<Obj, ToEqual, Readonly<{ ts: 'test', prism: 'utilities' }>>>
+  🔴 fail: Expect<TypeOf<Obj, ToEqual, Readonly<{ ts: string, prism: string }>>>
+//                ˄˄ 🚁 Type 'false' does not satisfy the constraint 'true'.ts(2344)
+  🔴 fail2: Expect<TypeOf<Obj, ToEqual, { ts: 'test', prism: 'utilities' }>>
+//                 ˄˄ 🚁 Type 'false' does not satisfy the constraint 'true'.ts(2344)
+}
 ```
 > Both failing test cases would pass with the ***ToBe*** comparison operator.
 
