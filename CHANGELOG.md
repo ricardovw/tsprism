@@ -1,5 +1,11 @@
 # tsprism
 
+## 1.1.1
+
+### Patch Changes
+
+- afca022: fix pkg version
+
 ## 0.1.0
 
 ### Minor Changes
