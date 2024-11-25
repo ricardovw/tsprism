@@ -1,5 +1,11 @@
 # tsprism
 
+## 1.1.1
+
+### Patch Changes
+
+- afca022: fixed pkg version
+
 ## 1.1.0
 
 ### Minor Changes
@@ -10,4 +16,4 @@
 
 ### Major Changes
 
-- 41c7125: Released TS Test Utilities
+- 41c7125: released ts test utilities

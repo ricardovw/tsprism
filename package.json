@@ -1,6 +1,6 @@
 {
   "name": "tsprism",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "a prism of type helpers and testing utilities for Typescript!",
   "keywords": [
     "Typescript",
